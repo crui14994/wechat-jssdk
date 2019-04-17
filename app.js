@@ -1,7 +1,7 @@
 
 const express = require('express'), //express 框架 
     crypto = require('crypto'), //引入加密模块
-    Jsapi = require("./jsApi/wechat_jsapi"), //Wechat JS-API接口
+    Jsapi = require("./wechatApi/wechat_jsapi"), //Wechat JS-API接口
     config = require('./config'); //引入配置文件
 
 var app = express(); //实例express框架
