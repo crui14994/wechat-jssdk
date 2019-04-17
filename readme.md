@@ -1,7 +1,7 @@
 ### 基于Node.js的微信JS-SDK后端接口实现
 ---
 
-#### 一.初始化项目
+#### 一.初始化项目(需要配置自己的微信公众号;自行查看微信官方文档)
 1. 下载项目
     ```
     git clone git@github.com:crui14994/wechat-jssdk.git
@@ -59,4 +59,6 @@ jssdk.getSignPackage(url).then(
 
 #### 四.详情移步简书查看
 [基于Node.js的微信JS-SDK后端接口实现（一）](https://www.jianshu.com/p/6e039428431b)
+
+
 [基于Node.js的微信JS-SDK后端接口实现（二）](https://www.jianshu.com/p/4bf47177b076)
