@@ -50,7 +50,7 @@ jssdk.getJsApiTicket().then(
     re => console.log(re)
 ).catch(err => console.error(err));
 ```
-获取 access_token, 返回promise对象，resolve回调返回string
+获取 JS-SDK 权限验证的签名, 返回promise对象，resolve回调返回json
 ```
 jssdk.getSignPackage(url).then(
     re => console.log(JSON.stringify(re))

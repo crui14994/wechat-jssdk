@@ -1,7 +1,8 @@
-
 const express = require('express'), //express 框架 
     crypto = require('crypto'), //引入加密模块
     Jsapi = require("./wechatApi/wechat_jsapi"), //Wechat JS-API接口
+    https = require('./util/https'),
+    // https = require('https'),
     config = require('./config'); //引入配置文件
 
 var app = express(); //实例express框架
@@ -72,6 +73,27 @@ app.get('/jssdk', function (req, res) {
         "err": err
     }));
 });
+
+//微信网页授权
+app.get("/oauth", (req, res) => {
+    //没有code就跳转去授权
+    if (!req.query.code) {
+        let redirect_uri = `http://${req.hostname}${req.path}`;
+        res.redirect(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${config.appID}&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`)
+        return;
+    }
+    //获取code值
+    let code = req.query.code;
+    //通过code换取网页授权access_token
+    https.requestGet(`https://api.weixin.qq.com/sns/oauth2/access_token?appid=${config.appID}&secret=${config.appScrect}&code=${code}&grant_type=authorization_code`).then(function (data) {
+        let {access_token,openid} = JSON.parse(data);
+        //拉取用户信息
+        https.requestGet(`https://api.weixin.qq.com/sns/userinfo?access_token=${access_token}&openid=${openid}&lang=zh_CN`).then(result =>{
+            res.send(result)
+        })
+    })
+})
+
 
 //监听3000端口
 app.listen(3000);
