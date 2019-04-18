@@ -62,3 +62,5 @@ jssdk.getSignPackage(url).then(
 
 
 [基于Node.js的微信JS-SDK后端接口实现（二）](https://www.jianshu.com/p/4bf47177b076)
+
+[基于Node.js的微信JS-SDK后端接口实现（三）](https://www.jianshu.com/p/ca72ac845d0c)
